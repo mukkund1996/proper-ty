@@ -32,7 +32,7 @@ components:
 paths:
   /users:
     get:
-      operationId: "user.read_all"
+      operationId: "endpoints.user.read_all"
       tags:
         - "user"
       summary: "Read the list of users"
@@ -41,7 +41,7 @@ paths:
           description: "Successfully read user list"
 
     post:
-      operationId: "user.create"
+      operationId: "endpoints.user.create"
       tags:
         - "user"
       summary: "Create a new user"
@@ -60,7 +60,7 @@ paths:
           description: "Invalid user object"
   /users/{user_id}:
     get:
-      operationId: "user.read_one"
+      operationId: "endpoints.user.read_one"
       tags:
         - "user"
       summary: "Read user by username"
@@ -72,7 +72,7 @@ paths:
         "404":
           description: "User not found"
     put:
-      operationId: "user.update"
+      operationId: "endpoints.user.update"
       tags:
         - "user"
       summary: "Update user by username"
@@ -94,7 +94,7 @@ paths:
         "404":
           description: "User not found"
     delete:
-      operationId: "user.delete"
+      operationId: "endpoints.user.delete"
       tags:
         - "user"
       summary: "Delete user by username"
