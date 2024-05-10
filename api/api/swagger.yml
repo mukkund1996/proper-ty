@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: "Proper-ty API"
+  description: "An API providing information about properties"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    User:
+      type: "object"
+      required:
+        - username
+      properties:
+        first_name:
+          type: "string"
+        last_name:
+          type: "string"
+        username:
+          type: "string"
+  parameters:
+    user_id:
+      name: "user_id"
+      description: "Id of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+
+paths:
+  /users:
+    get:
+      operationId: "user.read_all"
+      tags:
+        - "user"
+      summary: "Read the list of users"
+      responses:
+        "200":
+          description: "Successfully read user list"
+
+    post:
+      operationId: "user.create"
+      tags:
+        - "user"
+      summary: "Create a new user"
+      requestBody:
+        description: "User object that needs to be added"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: "Successfully created user"
+        "400":
+          description: "Invalid user object"
+  /users/{user_id}:
+    get:
+      operationId: "user.read_one"
+      tags:
+        - "user"
+      summary: "Read user by username"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Successfully read user"
+        "404":
+          description: "User not found"
+    put:
+      operationId: "user.update"
+      tags:
+        - "user"
+      summary: "Update user by username"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        description: "User object that needs to be updated"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: "Successfully updated user"
+        "400":
+          description: "Invalid user object"
+        "404":
+          description: "User not found"
+    delete:
+      operationId: "user.delete"
+      tags:
+        - "user"
+      summary: "Delete user by username"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "204":
+          description: "Successfully deleted user"
+        "404":
+          description: "User not found"

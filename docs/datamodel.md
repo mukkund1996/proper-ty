@@ -3,11 +3,11 @@
 ```mermaid
 erDiagram
     Property {
-      int id
-      Sale sale
-      Building building
-      Address address
-      Location location
+      int id PK
+      Sale sale FK
+      Building building FK
+      Address address FK
+      Location location FK
       float estimated_market_value
       int full_bath_count
       int half_bath_count
@@ -20,16 +20,16 @@ erDiagram
     Sale }o--|| Property : describes
 
     Location {
-      int id
+      int id PK
+      Address address FK
       float latitude
       float longitude
-      Address address
     }
 
     Location ||--|{ Address : contains
 
     Address {
-      int id
+      int id PK
       int tax_code
       int neighbourhood
       int house_num
@@ -41,8 +41,8 @@ erDiagram
     }
     
     Building {
-      int id
-      Class class
+      int id PK
+      Class class FK
       Lot lot
       string type
       string usage
@@ -57,7 +57,7 @@ erDiagram
       boolean multi_sale
     }
     Class {
-      int id
+      int id PK
       string description
       int class_number
     }
@@ -65,14 +65,14 @@ erDiagram
     Lot ||--o{ Building : contains
 
     Sale {
-      int id
+      int id PK
       float amount
       float date
       int deed_type
     }
 
     Lot {
-      int id
+      int id PK
       float current_land_area
       float current_building_area
       float current_total_area
@@ -82,7 +82,7 @@ erDiagram
     }
 
     User {
-      int id
+      int id PK
       string first_name
       string last_name
       string username
@@ -90,9 +90,9 @@ erDiagram
     }
 
     User_Property_Relation {
-      int id 
-      User user
-      Property property
+      int id PK 
+      User user FK
+      Property property FK
     }
 
     User }o--|| User_Property_Relation : favourites
