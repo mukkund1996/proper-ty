@@ -8,6 +8,11 @@ servers:
   - url: "/api"
 
 components:
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: "endpoints.authenticate.basic_auth"
   schemas:
     User:
       type: "object"
@@ -20,6 +25,16 @@ components:
           type: "string"
         username:
           type: "string"
+    UserPropertyRelation:
+      type: "object"
+      required:
+        - user_id
+        - property_id
+      properties:
+        user_id:
+          type: "integer"
+        property_id:
+          type: "integer"
   parameters:
     user_id:
       name: "user_id"
@@ -61,6 +76,8 @@ paths:
       responses:
         "200":
           description: "Successfully read user list"
+      security:
+        - basic: []
     post:
       operationId: "endpoints.users.create"
       tags:
@@ -79,6 +96,8 @@ paths:
           description: "Successfully created user"
         "400":
           description: "Invalid user object"
+      security:
+        - basic: []
   /users/{user_id}:
     get:
       operationId: "endpoints.users.read_one"
@@ -92,6 +111,8 @@ paths:
           description: "Successfully read user"
         "404":
           description: "User not found"
+      security:
+        - basic: []
     put:
       operationId: "endpoints.users.update"
       tags:
@@ -114,6 +135,8 @@ paths:
           description: "Invalid user object"
         "404":
           description: "User not found"
+      security:
+        - basic: []
     delete:
       operationId: "endpoints.users.delete"
       tags:
@@ -126,6 +149,46 @@ paths:
           description: "Successfully deleted user"
         "404":
           description: "User not found"
+      security:
+        - basic: []
+  /users/add_property:
+    post:
+      operationId: "endpoints.users.add_property"
+      tags:
+        - "user"
+      summary: "Add a property to a user"
+      requestBody:
+        description: "Property object that needs to be added"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "user_property_relation"
+              $ref: "#/components/schemas/UserPropertyRelation"
+      responses:
+        "201":
+          description: "Successfully added property"
+        "400":
+          description: "Invalid property object"
+        "404":
+          description: "User not found"
+      security:
+        - basic: []
+  /users/get_properties/{user_id}:
+    get:
+      operationId: "endpoints.users.get_properties"
+      tags:
+        - "user"
+      summary: "Get properties of a user"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Successfully read properties list"
+        "404":
+          description: "User not found"
+      security:
+        - basic: []
   /properties:
     get:
       operationId: "endpoints.properties.read"
@@ -141,3 +204,18 @@ paths:
           description: "Successfully read properties list"
         "400":
           description: "Invalid request"
+      security:
+        - basic: []
+  /authenticate:
+    get:
+      summary: "Return authentication token"
+      operationId: "endpoints.authenticate.authenticate"
+      responses:
+        "200":
+          description: Auth token
+          content:
+            "*/*":
+              schema:
+                type: string
+      security:
+        - basic: []

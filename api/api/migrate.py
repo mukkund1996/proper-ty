@@ -14,12 +14,14 @@ users = [
     {
         "first_name": "Admin",
         "last_name": "User",
-        "user_name": "admin",
+        "username": "admin",
+        "password": "admin",
     },
     {
         "first_name": "Basic",
         "last_name": "User",
-        "user_name": "basic",
+        "username": "basic",
+        "password": "basic",
     }
 ]
 
@@ -53,5 +55,5 @@ with app.app_context():
         db.session.add(building_class)
 
     for user in users:
-        db.session.add(User(first_name=user["first_name"], last_name=user["last_name"], username=user["user_name"]))
+        db.session.add(User(first_name=user["first_name"], last_name=user["last_name"], username=user["username"], password=user["password"]))
     db.session.commit()

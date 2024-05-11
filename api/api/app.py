@@ -4,7 +4,7 @@ import config
 API_PORT = 8000
 
 app = config.connex_app
-app.add_api(config.basedir.parent / 'openapi' / "swagger.yml")
+app.add_api(config.basedir.parent / 'spec' / "swagger.yml")
 
 @app.route("/")
 def home():

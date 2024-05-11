@@ -1,8 +1,8 @@
 from flask import abort, make_response
 
 from config import db
-from models import User
-from schema import user_schema, users_schema
+from models import User, UserPropertyRelation
+from schema import user_schema, users_schema, user_relation_schema, user_relations_schema
 
 def read_all():
     users = User.query.all()
@@ -45,5 +45,26 @@ def delete(user_id):
         db.session.delete(user)
         db.session.commit()
         return make_response(f"User {user_id} deleted", 204)
+    else:
+        abort(404, f"User {user_id} not found")
+
+
+def add_property(user_property_relation):
+    user_id = user_property_relation.get("user_id")
+    property_id = user_property_relation.get("property_id")
+    user = User.query.filter(User.id == user_id).one_or_none()
+    if user:
+        relation = UserPropertyRelation(user_id=user_id, property_id=property_id)
+        db.session.add(relation)
+        db.session.commit()
+        return user_relation_schema.dump(relation), 200
+    else:
+        abort(404, f"User {user_id} not found")
+
+def get_properties(user_id):
+    user = User.query.filter(User.id == user_id).one_or_none()
+    if user:
+        relations = UserPropertyRelation.query.filter(UserPropertyRelation.user_id == user_id).all()
+        return user_relations_schema.dump(relations), 200
     else:
         abort(404, f"User {user_id} not found")
