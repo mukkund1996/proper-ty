@@ -23,7 +23,7 @@ class Building(db.Model):
     lot_id = db.Column(db.Integer, db.ForeignKey('lot.id'))
     building_type = db.Column(db.String[70])
     usage = db.Column(db.String[70])
-    apartment_count = db.Column(db.Integer)
+    apartment_count = db.Column(db.String[30])
     commercial_unit_count = db.Column(db.Integer)
     external_description = db.Column(db.String[70])
     basement_description = db.Column(db.String[70])
@@ -40,10 +40,10 @@ class Building(db.Model):
 class Class(db.Model):
     __tablename__ = 'class'
     id = db.Column(db.Integer, primary_key=True)
+    class_number = db.Column(db.Integer, unique=True)
     description = db.Column(db.String[70])
-    class_number = db.Column(db.Integer)
 
-    buildings = db.relationship(Building, back_populates='building_class')
+    buildings = db.relationship(Building, back_populates='building_class', single_parent=True)
 
 class Location(db.Model):
     __tablename__ = 'location'
@@ -88,30 +88,12 @@ class Property(db.Model):
     location = db.relationship(Location, back_populates='asset_property')
     address = db.relationship(Address, back_populates='asset_property')
 
-class PropertySchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = Property
-        load_instance = True
-        sqla_session = db.session
-
-property_schema = PropertySchema()
-properties_schema = PropertySchema(many=True)
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
-
-class UserSchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = User
-        load_instance = True
-        sqla_session = db.session
-
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
 
 class UserPropertyRelation(db.Model):
     __tablename__ = 'user_property_relation'

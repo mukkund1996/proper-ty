@@ -25,23 +25,44 @@ components:
       name: "user_id"
       description: "Id of the user to get"
       in: path
-      required: True
+      required: true
       schema:
         type: "integer"
+    limit:
+      name: "limit"
+      description: "Number of items to return"
+      in: query
+      required: false
+      schema:
+        type: "integer"
+        default: 10
+    search_key:
+      name: "search_key"
+      description: "Key to search for"
+      in: query
+      required: false
+      schema:
+        type: "string"
+    search_value:
+      name: "search_value"
+      description: "Value of key to search for"
+      in: query
+      required: false
+      schema:
+        type: "string"
 
 paths:
   /users:
     get:
-      operationId: "endpoints.user.read_all"
+      operationId: "endpoints.users.read_all"
       tags:
         - "user"
       summary: "Read the list of users"
       responses:
         "200":
           description: "Successfully read user list"
-
     post:
-      operationId: "endpoints.user.create"
+      operationId: "endpoints.users.create"
       tags:
         - "user"
       summary: "Create a new user"
@@ -60,7 +81,7 @@ paths:
           description: "Invalid user object"
   /users/{user_id}:
     get:
-      operationId: "endpoints.user.read_one"
+      operationId: "endpoints.users.read_one"
       tags:
         - "user"
       summary: "Read user by username"
@@ -72,7 +93,7 @@ paths:
         "404":
           description: "User not found"
     put:
-      operationId: "endpoints.user.update"
+      operationId: "endpoints.users.update"
       tags:
         - "user"
       summary: "Update user by username"
@@ -94,7 +115,7 @@ paths:
         "404":
           description: "User not found"
     delete:
-      operationId: "endpoints.user.delete"
+      operationId: "endpoints.users.delete"
       tags:
         - "user"
       summary: "Delete user by username"
@@ -105,3 +126,18 @@ paths:
           description: "Successfully deleted user"
         "404":
           description: "User not found"
+  /properties:
+    get:
+      operationId: "endpoints.properties.read"
+      tags:
+        - "properties"
+      summary: "Read the list of properties"
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/search_key"
+        - $ref: "#/components/parameters/search_value"
+      responses:
+        "200":
+          description: "Successfully read properties list"
+        "400":
+          description: "Invalid request"
