@@ -73,12 +73,8 @@ erDiagram
 
     Lot {
       int id PK
-      float current_land_area
-      float current_building_area
-      float current_total_area
-      float prior_land_area
-      float prior_building_area
-      float prior_total_area
+      float land_area
+      float building_area
     }
 
     User {
