@@ -33,6 +33,7 @@ export const fetchWithBasicAuth = async (
     headers,
     method,
     body: JSON.stringify(body),
+    cache: 'force-cache' as RequestCache,
   };
 
   const response = await fetch(url, requestOptions);

@@ -34,6 +34,7 @@ const clearValues = () => {
     <IconField iconPosition="right">
       <InputIcon>
         <i
+          v-if="searchValue?.length && searchKey?.length"
           :class="props.loading ? 'pi pi-spin pi-spinner' : 'pi pi-search'"
           @click="$emit('search', { key: searchKey, value: searchValue })"
         ></i>
