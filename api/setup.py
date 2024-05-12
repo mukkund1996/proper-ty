@@ -6,6 +6,6 @@ setup(
     packages=['api',],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('../README.md').read(),
-    install_requires=["Flask-SQLAlchemy", "Flask-Migrate", "SQLAlchemy", "connexion[swagger-ui]", "flask-marshmallow[sqlalchemy]"],
+    install_requires=["Flask-SQLAlchemy", "Flask-Migrate", "SQLAlchemy", "connexion[swagger-ui]", "flask-marshmallow[sqlalchemy]", "flask-cors"],
     extras_require={"seed": ["pandas"], "test": ["pytest", "pytest-flask"]},
 )
