@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
 import Dropdown from 'primevue/dropdown';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
@@ -10,6 +10,7 @@ const props = defineProps<{
   loading: boolean;
 }>();
 
+const emit = defineEmits(['search']);
 const searchValue = ref();
 const searchKey = ref();
 const searchOptions = ref<SearchKey[]>(['address', 'class', 'usage', 'area', 'marketValue']);
@@ -17,6 +18,11 @@ const searchOptions = ref<SearchKey[]>(['address', 'class', 'usage', 'area', 'ma
 const clearValues = () => {
   searchValue.value = '';
   searchKey.value = '';
+};
+
+const refreshLoad = () => {
+  clearValues();
+  emit('search', undefined);
 };
 </script>
 
@@ -41,7 +47,7 @@ const clearValues = () => {
       </InputIcon>
       <InputText v-model="searchValue" placeholder="Keyword Search" />
     </IconField>
-    <i class="pi pi-times" @click="clearValues"></i>
+    <i class="pi pi-times" @click="refreshLoad"></i>
   </div>
 </template>
 <style scoped>
