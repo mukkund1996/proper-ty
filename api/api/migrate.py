@@ -33,7 +33,7 @@ with app.app_context():
     for index, row in properties_df.iterrows():
         property_record = Property(estimated_market_value=row["ESTIMATED_MARKET_VALUE"], full_bath_count=row["FULL_BATH"], half_bath_count=row["HALF_BATH"], fireplace=row["FIREPLACE"], garage_description=row["GAR_DESC"])
         address = Address(tax_code=row["TAX_CODE"], city=row["CITY"], zip_code=row["Zip"], street=row["STREET"], house_number=row["HOUSENO"], neighborhood=row["NEIGHBORHOOD"], full_address=row["Full Address"])
-        location = Location(latitude=row["Longitude"], longitude=row["Latitude"], address=address)
+        location = Location(latitude=row["Latitude"], longitude=row["Longitude"], address=address)
         property_record.location = location
         property_record.address = address
         
