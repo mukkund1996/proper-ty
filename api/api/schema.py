@@ -1,5 +1,5 @@
 from config import db, ma
-from models import User, Property, Address, Location, Building, Lot, UserPropertyRelation
+from models import User, Property, Address, Location, Building, Lot, UserPropertyRelation, Class
 from marshmallow_sqlalchemy import fields
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
@@ -39,7 +39,7 @@ lot_schema = LotSchema()
 
 class BuildingClassSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        model = Building
+        model = Class
         load_instance = True
         sqla_session = db.session
 

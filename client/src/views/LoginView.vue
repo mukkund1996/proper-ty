@@ -6,8 +6,9 @@ import InputGroupAddon from 'primevue/inputgroupaddon';
 import Password from 'primevue/password';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import { createBasicAuthToken, fetchWithBasicAuth, getAuthKey, setAuthKey } from '../utils/auth';
+import { createBasicAuthToken, fetchWithBasicAuth, getAuthKey, setAuthKey } from '../shared/auth';
 import { DASHBOARD_ROUTE } from '../router/routes.constant';
+import { API_URL } from '../shared/constants';
 
 const router = useRouter();
 
@@ -19,7 +20,7 @@ const login = async () => {
   incorrectCredentials.value = false;
   const authToken = createBasicAuthToken(username.value, password.value);
   const response = await fetchWithBasicAuth(
-    'http://localhost:8000/api/authenticate',
+    `${API_URL}/authenticate`,
     'GET',
     undefined,
     undefined,
