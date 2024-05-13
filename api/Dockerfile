@@ -2,7 +2,7 @@ FROM python:3.7-slim-buster AS build
 COPY ./api/setup.py /app/setup.py
 
 WORKDIR /app
-RUN python -m pip install .[seed]
+RUN python -m pip install -e .[seed]
 
 COPY ./api/ /app/
 COPY ./seed/Enodo_Skills_Assessment_Data_File.xlsx /data/Enodo_Skills_Assessment_Data_File.xlsx
