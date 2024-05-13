@@ -4,7 +4,7 @@ from models import Property, Address, Building, Class, Lot
 from schema import properties_schema
 from config import db, cache
 
-@cache.cached(timeout=1000, key_prefix="properties")
+@cache.memoize(timeout=1000)
 def read(limit, page=None, page_size=None, search_key=None, search_value=None):
     """
     Retrieves a list of properties based on the provided parameters.
@@ -60,6 +60,7 @@ def read(limit, page=None, page_size=None, search_key=None, search_value=None):
         "totalPages": page_count
     }
 
+@cache.memoize(timeout=1000)
 def get_meta(page_size=None):
     """
     Get metadata for properties.

@@ -22,6 +22,11 @@ docker run --rm mukkund1996/property-api
 ```
 
 ### Client
+- Create a `env.production` file in proper-ty/client with the following values:
+```
+VITE_API_URL="http://localhost:8000/api"
+VITE_MAPLIBRE_TOKEN="YOUR_MAPLIBRE_TOKEN"
+```
 - Navigate to the root of the repo
 - Build the docker image
 ```
