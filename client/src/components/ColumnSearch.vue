@@ -2,7 +2,6 @@
 import { ref, defineEmits } from 'vue';
 import Dropdown from 'primevue/dropdown';
 import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import type { SearchKey } from '@/shared/types';
