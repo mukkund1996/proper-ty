@@ -29,8 +29,8 @@ jobs:
       - name: Migrate database
         working-directory: ./api
         run: |
-          mkdir /app/db
-          export SQLITE_PATH=/app/db/properties.db
+          mkdir ./db
+          export SQLITE_PATH="$PWD/db/properties.db"
           python api/migrate.py
 
       - name: Run tests
