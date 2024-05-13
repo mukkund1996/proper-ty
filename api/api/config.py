@@ -1,16 +1,23 @@
 import pathlib
 import connexion
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_caching import Cache
 
+API_PORT = os.environ.get("API_PORT", 8000)
+
 basedir = pathlib.Path(__file__).parent.resolve()
-connex_app = connexion.App(__name__, specification_dir=basedir)
+SEED_DATA_PATH = os.environ.get("SEED_DATA_PATH", basedir.parent.parent / "seed" / "Enodo_Skills_Assessment_Data_File.xlsx")
+
+connex_app = connexion.App("PROPER-ty-api", specification_dir=basedir)
 app = connex_app.app
 
+db_path = os.environ.get("SQLITE_PATH", basedir.parent.parent / "db" / "properties.db")
+
 config = {
-    "SQLALCHEMY_DATABASE_URI": f"sqlite:///{basedir / 'properties.db'}",
+    "SQLALCHEMY_DATABASE_URI": f"sqlite:///{db_path}",
     "CACHE_TYPE": "SimpleCache",
     "CACHE_DEFAULT_TIMEOUT": 300,
     "SQLALCHEMY_TRACK_MODIFICATIONS": False,

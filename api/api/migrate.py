@@ -1,10 +1,8 @@
 import pandas as pd
-from config import app, db
+from config import app, db, SEED_DATA_PATH
 from models import Property, Location, Address, Lot, Building, Sale, Class, User
 
-SEED_DATA_ADDRESS = "/Users/mukkundsunjii/projects/proper-ty/seed/Enodo_Skills_Assessment_Data_File.xlsx"
-
-properties_df = pd.read_excel(SEED_DATA_ADDRESS)
+properties_df = pd.read_excel(SEED_DATA_PATH)
 
 properties_df["SALE_DATE"] = properties_df["SALE_DATE"].apply(lambda x: pd.to_datetime(x, errors='coerce'))
 properties_df["SALE_DATE"] = properties_df["SALE_DATE"].dt.date
