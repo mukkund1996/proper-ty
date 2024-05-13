@@ -14,11 +14,12 @@ const emit = defineEmits(['selected', 'unselected']);
 const metaKey = ref(true);
 const selectedRow = ref();
 const columns = [
-  { id: 1, field: 'fullAddress', header: 'Address' },
-  { id: 2, field: 'classDescription', header: 'Class' },
-  { id: 3, field: 'estimatedMarketValue', header: 'Market Value' },
-  { id: 4, field: 'buildingArea', header: 'Building Area' },
-  { id: 5, field: 'buildingUse', header: 'Building Usage' },
+  { id: 1, field: 'id', header: 'ID' },
+  { id: 2, field: 'fullAddress', header: 'Address' },
+  { id: 3, field: 'classDescription', header: 'Class' },
+  { id: 4, field: 'estimatedMarketValue', header: 'Market Value' },
+  { id: 5, field: 'buildingArea', header: 'Building Area' },
+  { id: 6, field: 'buildingUse', header: 'Building Usage' },
 ];
 const onRowSelect = (event: DataTableRowSelectEvent) => {
   emit('selected', event.data.id);
