@@ -1,4 +1,4 @@
-name: Python Tests
+name: CI Workflow
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  test-api:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,3 +34,23 @@ jobs:
       - name: Run tests
         working-directory: ./api/api
         run: python -m pytest ../tests
+
+  build-client:
+    runs-on: ubuntu-latest
+    name: Node 21 sample
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run linting rules and tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - run: npm ci
+        working-directory: ./client
+
+      - run: npm run lint
+        working-directory: ./client
+
+      - run: npm run test
+        working-directory: ./client
