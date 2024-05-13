@@ -24,8 +24,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./api
         run: |
-          python -m pip install -e .[extra]
-          python -m pip install -e .[seed]
+          python -m pip install -e .[all]
 
       - name: Migrate database
         working-directory: ./api
