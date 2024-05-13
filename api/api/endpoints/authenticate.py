@@ -1,5 +1,5 @@
 from flask import abort
-from models import User
+from api.models import User
 
 def basic_auth(username, password):
     user = User.query.filter(User.username == username).one_or_none()

@@ -1,8 +1,8 @@
 from flask import abort, make_response
 
 from api import db
-from models import User, UserPropertyRelation
-from schema import user_schema, users_schema, user_relation_schema, user_relations_schema
+from api.models import User, UserPropertyRelation
+from api.schema import user_schema, users_schema, user_relation_schema, user_relations_schema
 
 def read_all():
     """Retrieves a list of all users."""

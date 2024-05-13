@@ -1,9 +1,10 @@
 import pytest
-from api.config import app
+from api import create_app
 
 
 @pytest.fixture()
 def app():
+    app = create_app()
     app.config.update({
         "TESTING": True,
     })
@@ -18,3 +19,7 @@ def client(app):
 @pytest.fixture()
 def runner(app):
     return app.test_cli_runner()
+
+@pytest.fixture()
+def basic_auth_header():
+    return {"Authorization": "Basic YWRtaW46YWRtaW4="}

@@ -1,5 +1,5 @@
 from api import db, ma
-from models import User, Property, Address, Location, Building, Lot, UserPropertyRelation, Class
+from api.models import User, Property, Address, Location, Building, Lot, UserPropertyRelation, Class
 from marshmallow_sqlalchemy import fields
 
 class UserSchema(ma.SQLAlchemyAutoSchema):

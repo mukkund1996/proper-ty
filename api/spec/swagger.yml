@@ -25,6 +25,8 @@ components:
           type: "string"
         username:
           type: "string"
+        password:
+          type: "string"
     UserPropertyRelation:
       type: "object"
       required:
