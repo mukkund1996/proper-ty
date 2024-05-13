@@ -4,6 +4,7 @@ import Dropdown from 'primevue/dropdown';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
 import type { SearchKey } from '@/shared/types';
 
 const props = defineProps<{
@@ -16,19 +17,16 @@ const searchKey = ref();
 const searchOptions = ref<SearchKey[]>(['address', 'class', 'usage', 'area', 'marketValue']);
 
 const clearValues = () => {
+  if (searchValue.value.length && searchKey.value.length) {
+    emit('search');
+  }
   searchValue.value = '';
   searchKey.value = '';
-};
-
-const refreshLoad = () => {
-  clearValues();
-  emit('search', undefined);
 };
 </script>
 
 <template>
   <div class="form-container">
-    <i class="pi pi-refresh" @click="clearValues"></i>
     <Dropdown
       v-model="searchKey"
       :options="searchOptions"
@@ -38,16 +36,14 @@ const refreshLoad = () => {
       class="w-full md:w-10rem"
     />
     <IconField iconPosition="right">
-      <InputIcon>
-        <i
-          v-if="searchValue?.length && searchKey?.length"
-          :class="props.loading ? 'pi pi-spin pi-spinner' : 'pi pi-search'"
-          @click="$emit('search', { key: searchKey, value: searchValue })"
-        ></i>
-      </InputIcon>
       <InputText v-model="searchValue" placeholder="Keyword Search" />
     </IconField>
-    <i class="pi pi-times" @click="refreshLoad"></i>
+    <Button
+      :disabled="!searchValue?.length || !searchKey?.length"
+      :icon="props.loading ? 'pi pi-spin pi-spinner' : 'pi pi-search'"
+      @click="$emit('search', { key: searchKey, value: searchValue })"
+    ></Button>
+    <Button icon="pi pi-times" @click="clearValues"></Button>
   </div>
 </template>
 <style scoped>

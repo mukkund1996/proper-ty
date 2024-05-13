@@ -1,14 +1,28 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView, useRouter } from 'vue-router';
+import Button from 'primevue/button';
+import { removeAuthKey } from '@/shared/auth';
+
+const router = useRouter();
+
+const logout = () => {
+  removeAuthKey();
+  router.push('/');
+};
 </script>
 
 <template>
   <header>
     <div>
       <nav class="nav-container">
-        <RouterLink to="/dashboard"><i class="pi pi-home nav-items"></i></RouterLink>
         <h1>Proper-Ty</h1>
-        <RouterLink to="/favorites"><i class="pi pi-bookmark nav-items"></i></RouterLink>
+        <Button
+          class="nav-items"
+          icon="pi pi-sign-out"
+          label="Logout"
+          @click="logout"
+          :disabled="$route.path === '/'"
+        ></Button>
       </nav>
     </div>
   </header>
@@ -17,16 +31,14 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <style scoped>
 .nav-items {
-  font-size: 2.5rem;
-  padding: 0 1.5rem;
-  margin: 0 10rem;
+  margin: 0 2.5rem;
 }
 
 .nav-container {
   display: flex;
   width: 100%;
   position: fixed;
-  top: 25px;
+  top: 65px;
   justify-content: center;
   align-items: center;
 }

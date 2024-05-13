@@ -8,6 +8,7 @@ export const createBasicAuthToken = (username: string, password: string) => {
 
 export const getAuthKey = () => localStorage.getItem('authToken');
 export const setAuthKey = (key: string) => localStorage.setItem('authToken', key);
+export const removeAuthKey = () => localStorage.removeItem('authToken');
 
 export const fetchWithBasicAuth = async (
   url: string,

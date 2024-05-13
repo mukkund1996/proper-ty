@@ -47,7 +47,7 @@ onMounted(() => {
 <template>
   <main>
     <div class="form-container">
-      <h1>Login</h1>
+      <h2>Login</h2>
       <InputGroup class="input">
         <InputGroupAddon>
           <i class="pi pi-user"></i>
