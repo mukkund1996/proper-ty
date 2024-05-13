@@ -15,7 +15,7 @@ const logout = () => {
   <header>
     <div>
       <nav class="nav-container">
-        <h1>Proper-Ty</h1>
+        <h1>PROPER-ty</h1>
         <Button
           class="nav-items"
           icon="pi pi-sign-out"
@@ -30,6 +30,11 @@ const logout = () => {
 </template>
 
 <style scoped>
+h1 {
+  font-family: Comfortaa;
+  font-style: bold;
+}
+
 .nav-items {
   margin: 0 2.5rem;
 }

@@ -1,6 +1,7 @@
 import 'primevue/resources/themes/aura-light-green/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
+import '@/assets/main.css';
 
 import { createApp } from 'vue';
 import App from './App.vue';
