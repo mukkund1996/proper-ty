@@ -27,10 +27,8 @@ jobs:
           python -m pip install -e ."[seed, test]"
 
       - name: Migrate database
-        working-directory: ./api
         run: |
-          mkdir ./db
-          export SQLITE_PATH="$PWD/db/properties.db"
+          mkdir db
           python api/migrate.py
 
       - name: Run tests
