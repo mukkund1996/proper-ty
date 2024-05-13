@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropertyTableRow } from '@/models/property';
-import { defineProps, ref } from 'vue';
+import { ref } from 'vue';
 import DataTable from 'primevue/datatable';
 import type { DataTableRowSelectEvent } from 'primevue/datatable';
 import Column from 'primevue/column';

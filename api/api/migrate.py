@@ -1,5 +1,6 @@
 import pandas as pd
-from config import app, db, SEED_DATA_PATH
+from app import app
+from api import db, SEED_DATA_PATH
 from models import Property, Location, Address, Lot, Building, Sale, Class, User
 
 properties_df = pd.read_excel(SEED_DATA_PATH)

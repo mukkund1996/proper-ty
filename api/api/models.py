@@ -1,4 +1,4 @@
-from config import db
+from api import db
 
 class Sale(db.Model):
     __tablename__ = 'sale'

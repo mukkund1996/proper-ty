@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import Dropdown from 'primevue/dropdown';
 import IconField from 'primevue/iconfield';
 import InputText from 'primevue/inputtext';

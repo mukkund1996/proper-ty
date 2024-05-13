@@ -1,6 +1,6 @@
 from flask import abort, make_response
 
-from config import db
+from api import db
 from models import User, UserPropertyRelation
 from schema import user_schema, users_schema, user_relation_schema, user_relations_schema
 

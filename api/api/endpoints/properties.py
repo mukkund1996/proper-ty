@@ -2,7 +2,7 @@ from flask import abort, make_response
 
 from models import Property, Address, Building, Class, Lot
 from schema import properties_schema
-from config import db, cache
+from api import db, cache
 
 @cache.memoize(timeout=1000)
 def read(limit, page=None, page_size=None, search_key=None, search_value=None):
