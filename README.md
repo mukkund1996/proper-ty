@@ -1,6 +1,9 @@
 # Overview
 An application where you choose and review a list of properties. 
 
+## Design Choices
+Check the [solution overview](docs/solution_overview.md) for detailed information on the solution. 
+
 # Getting started
 
 ## Running docker-compose

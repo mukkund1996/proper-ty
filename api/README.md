@@ -56,6 +56,13 @@ To install and run the PROPER-ty Flask API, follow these steps:
 
 View the API docs using Swagger at `http://localhost:8000/api/ui`.
 
+## Running tests
+Pytests can be run from the `proper-ty/api/api` directory due to importing constraints.
+
+```
+python -m pytest ../tests/
+```
+
 ### Quick start
 
 To use the PROPER-ty Flask API, you can make HTTP requests to the available endpoints. Here are some examples:
