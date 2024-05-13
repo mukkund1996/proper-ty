@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    environment:
+      - API_PORT=8000
+    ports:
+      - 8000:8000
+    volumes:
+      - ./api:/app
+
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./client:/app
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:
