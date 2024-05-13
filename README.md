@@ -33,6 +33,13 @@ docker run --rm mukkund1996/property-client
 ```
 
 # Docs
+
+## API
+More information on the [REST API](api/README.md).
+
+## Client
+More information on the [Front-end client](client/README.md).
+
 ## Datamodel
 The datamodel of the `properties.db` can be found [here](docs/datamodel).
 

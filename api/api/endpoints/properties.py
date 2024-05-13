@@ -6,6 +6,26 @@ from config import db, cache
 
 @cache.cached(timeout=1000, key_prefix="properties")
 def read(limit, page=None, page_size=None, search_key=None, search_value=None):
+    """
+    Retrieves a list of properties based on the provided parameters.
+
+    Args:
+        limit (int): The maximum number of properties to retrieve.
+        page (int, optional): The page number to retrieve when paginating results. Defaults to None.
+        page_size (int, optional): The number of properties per page when paginating results. Defaults to None.
+        search_key (str, optional): The property attribute to search for. Defaults to None.
+        search_value (str, optional): The value to search for in the specified property attribute. Defaults to None.
+
+    Returns:
+        dict: A dictionary containing the retrieved properties and additional information.
+            - properties (list): A list of property objects.
+            - countPerPage (int): The number of properties per page.
+            - totalCount (int): The total number of properties.
+            - totalPages (int): The total number of pages.
+
+    Raises:
+        404: If the specified search_key is not found.
+    """
     base_query = db.session.query(Property)
     if search_key and search_value:
         if search_key == "address":
@@ -41,6 +61,17 @@ def read(limit, page=None, page_size=None, search_key=None, search_value=None):
     }
 
 def get_meta(page_size=None):
+    """
+    Get metadata for properties.
+
+    Args:
+        page_size (int, optional): The number of properties per page. Defaults to None.
+
+    Returns:
+        dict: A dictionary containing the metadata.
+            - totalCount (int): The total count of properties.
+            - totalPages (int, optional): The total number of pages based on the page size.
+    """
     properties_count = db.session.query(Property).count()
     response = {
         "totalCount": properties_count,
