@@ -7,6 +7,7 @@ app = config.connex_app
 app.add_api(config.basedir.parent / 'spec' / "swagger.yml")
 
 @app.route("/")
+@config.cache.cached(timeout=50)
 def home():
     return render_template("home.html")
 

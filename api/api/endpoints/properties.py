@@ -2,8 +2,9 @@ from flask import abort, make_response
 
 from models import Property, Address, Building, Class, Lot
 from schema import properties_schema
-from config import db
+from config import db, cache
 
+@cache.cached(timeout=1000, key_prefix="properties")
 def read(limit, page=None, page_size=None, search_key=None, search_value=None):
     base_query = db.session.query(Property)
     if search_key and search_value:
