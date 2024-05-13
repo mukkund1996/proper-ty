@@ -16,7 +16,7 @@ cache = Cache()
 
 def create_app():
     connex_app = connexion.App("PROPER-ty-api", specification_dir=basedir)
-    connex_app.add_api(basedir.parent / 'spec' / "swagger.yml")
+    connex_app.add_api(basedir / 'spec' / "swagger.yml")
 
     app = connex_app.app
 
