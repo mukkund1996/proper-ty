@@ -28,9 +28,9 @@ jobs:
 
       - name: Migrate database
         working-directory: ./api
-        env:
-          SQLITE_PATH: /db/properties.db
-        run: python api/migrate.py
+        run: |
+          export SQLITE_PATH=/db/properties.db
+          python api/migrate.py
 
       - name: Run tests
         working-directory: ./api/api
