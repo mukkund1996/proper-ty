@@ -22,15 +22,15 @@ jobs:
           python-version: 3.x
 
       - name: Install dependencies
-        working-directory: {{github.workspace}}/api
+        working-directory: ./api
         run: |
           python -m pip install -e .[extra]
           python -m pip install -e .[seed]
 
       - name: Migrate database
-        working-directory: {{github.workspace}}/api
+        working-directory: ./api
         run: python api/migrate.py
 
       - name: Run tests
-        working-directory: {{github.workspace}}/api/api
+        working-directory: ./api/api
         run: python -m pytest ../tests
